@@ -42,8 +42,6 @@ function computeExpression(expr) {
     if (!tokens) throw "Invalid Expression";
 
     //Use Shunting Yard algorithm to convert to postfix
-    const outputQueue = [];
-    const operatorStack = [];
 
     const precedence = {
         '+' : 1,
@@ -51,13 +49,14 @@ function computeExpression(expr) {
         '*' : 2,
         '/' : 2,
     };
+    const outputQueue = [], operatorStack = [];
 
     const applyOperator = (a,b, op) => {
         a = parseFloat(a);
         b = parseFloat(b);
         switch (op)  {
             case '+' : return a + b;
-            case '-' : return a-b;
+            case '-' : return a - b;
             case '*' : return a * b;
             case '/' : return b !== 0 ? a / b : (() => { throw "Division by zero";})();
             default: throw "Unknown operator";
@@ -65,15 +64,22 @@ function computeExpression(expr) {
     };
 
     for (let token of tokens) {
-        if (!isNaN(token)) {
-            outputQueue.push(token);
-        } else if ('+-*/'.includes(token)) {
-            while (operatorStack.length && precedence[operatorStack[operatorStack.length - 1]] >= precedence[token]) {
-             outputQueue.push(operatorStack.pop())   
+        if (!isNaN(token)) outputQueue.push(token);
+        else if (precedence[token]) {
+            while (operatorStack.length && 
+                precedence[operatorStack[operatorStack.length - 1]] >= precedence[token])  {
+                    outputQueue.push(operatorStack.pop());
+                }
+                operatorStack.push(token);
+            } else if ( token === '(') operatorStack.push(token);
+            else if (token === ')') {
+                while (operatorStack.length && operatorStack[operatorStack.length - 1] !== '(') {
+                    outputQueue.push(operatorStack.pop());
+                }
+                operatorStack.pop();
             }
-            operatorStack.push(token);
-        } else if (token ===
-    }
+        }
+
 
     while (operatorStack.length) outputQueue.push(operatorStack.pop());
 
