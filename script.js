@@ -1,6 +1,8 @@
 let display = document.getElementById("display");
 
 function appendValue(value) {
+    if (display.value === "Error") display.value = "";
+    if (value === "." && display.value.endsWith(".")) return;
     display.value += value;
 }
 
@@ -9,27 +11,26 @@ function clearDisplay() {
 }
 
 function backspace() {
-    display.value = display.value.slice(0, -1);
+    if (display.value === "Error") {
+        display.value = "";
+    } else {
+        display.value = display.value.slice(0, -1);
+    }
 }
 
 function toggleSign() {
     if (display.value) {
-        if (display.value.startsWith("-")) {
-            display.value = display.value.slice(1);
-        } else {
-            display.value = "-" + display.value;
-        }
+        display.value = display.value.startsWoith("-") ? display.value.slice(1) : "-" + display.value;
     }
 }
-function calculateResult() {
-    const expression = display.value;
 
-    try {
-        const result = computeExpression(expression);
-        display.value = result;
-    }   catch (e) {
-        display.value = "Error";
-    }
+function calculateResult() {
+   try {
+    const result = computeExpression(display.value);
+    display.value = result;
+   } catch {
+    display.value = "Error";
+   }
 }
 
 function computeExpression(expr) {
@@ -71,38 +72,23 @@ function computeExpression(expr) {
              outputQueue.push(operatorStack.pop())   
             }
             operatorStack.push(token);
-        } else if (token ==='(') {
-            operatorStack.push(token);
-        } else if (token === ')') {
-            while (operatorStack.length && operatorStack[operatorStack.length - 1] !== '(') {
-              outputQueue.push(operatorStack.pop());
-            }
-            if (operatorStack.length === 0) throw "Missmatched parentheses";
-            operatorStack.pop(); //Remove '('
-        }
+        } else if (token ===
     }
 
-    while (operatorStack.length) {
-        const op = operatorStack.pop();
-        if (op === '(' || op === ')') throw "Mismatched parentheses";
-        outputQueue.push(op);
-    }
+    while (operatorStack.length) outputQueue.push(operatorStack.pop());
+
 
     //Evaluate postfix expression
     const stack = [];
     for (let token of outputQueue) {
-        if (!isNaN(token)) {
-            stack.push(token);
-        } else {
-            const b = stack.pop();
-            const a = stack.pop();
-            stack.push(applyOperator(a, b, token));
-        }
+        if (!isNaN(token)) stack.push(token);
+        else stack.push(applyOperator(stack.pop(), stack.pop(), token));
     }
-
     if (stack.length !== 1) throw "Invalid Expression";
     return stack[0];
-}
+
+} 
+
 
 //Scientific Functions
 function squareRoot() {
