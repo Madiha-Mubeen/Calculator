@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="mode-toggle">
+        <input type="checkbox" id="themeToggle">
+        <label for="themeToggle" class="toggle">
+            <span class="light">
+                <img src="contrast.png" alt="light theme-mode" class="mode-icon">
+            </span>
+            <span class="dark">
+                <img src="moon.png" alt="dark theme-mode" class="mode-icon">
+            </span>
+            <div class="ball"></div>
+        </label>
+    </div>
     <div class="container">
-        <button id="themeToggle">🌓</button>
+
         <div class="calculator">
+
             <input type="text" id="display" disabled/>
             <div class="buttons">
                 <button onclick="power(2)">x²</button>
