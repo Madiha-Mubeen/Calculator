@@ -1,0 +1,123 @@
+body {
+    background-color:aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family:Arial, Helvetica, sans-serif;
+    transition: background 0.3s ease;
+}
+
+.calculator {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #e0e5ec;
+    box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#display {
+    width: 100%;
+    height: 40px;
+    font-size: 21px;
+    text-align: right;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border:none;
+    border-radius: 15px;
+    background: #d1d5db;
+    box-shadow: inset 5px 5px 8px #a3b1c6, inset -5px -5px 8px #ffffff, 0 0 8px rgba(255, 200, 0, 0.4);
+    color: #1a1a1a;
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+    accent-color: orange;
+}
+
+#display:focus {
+    outline: none;
+    animation: blink-caret is step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-right-color: transparent; } 
+    50% { border-right-color: orange; }
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    gap: 12px;
+    justify-content: center;
+}
+
+button {
+    height: 50px;
+    width: 60px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    background-color: #e0e5ec;
+    box-shadow: 5px 5px 8px #a3b1c6, -5px -5px 8px #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+    background-color: #d4d4d4;
+}
+button:active {
+    box-shadow: inset 5px 5px 8px #a3b1c6, inset -5px -5px 8px #ffffff;
+}
+
+body.dark {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+body.dark .calculator {
+    background-color: #2e2e2e;
+    box-shadow: 8px 8px 15px #161616, -8px -8px 15px #3a3a3a;
+}
+
+body.dark #display {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    box-shadow: inset 5px 5px 8px #111111, inset -5px -5px 8px #333, 0 0 8px rgba(255, 200, 0, 0.5);
+    font-family: 'Courier New', Courier, monospace;
+    caret-color: orange;
+}
+
+body.dark button {
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    box-shadow: 5px 5px 8px #161616, -5px -5px 8px #3a3a3a;
+}
+
+body.dark button:active {
+    box-shadow: inset 5px 5px 8px #161616, inset -5px -5px 8px #3a3a3a;
+}
+
+body.dark button:hover {
+    background-color: #444;
+}
+
+#themeToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #e0e5ec;
+    box-shadow: 5px 5px 8px #a3b1c6, -5px -5px 8px #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+body.dark #themeToggle {
+    background-color: #444;
+    color: #fff;
+    box-shadow: 5px 5px 8px #161616, -5px -5px 8px #3a3a3a;
+}
