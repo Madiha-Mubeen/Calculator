@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Griffy&family=Nosifer&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AU+NSW:wght@100..400&display=swap');
+</style>
 </head>
 <body>
-   
-    <label class="switch">
-        <input type="chckbox" id="theme-toggle">
-        <span class="slider">
-            <img src="contrast.png" alt="icon sun">
-            <img src="moon.png" alt="icon moon">
-        </span>
-    </label>
 
-        
+    <h1>| Madiha's Calculator | <br></h1>
+    
+   <div class="calculator-container">
 
+    <div class="mode-toggle">
+        <input type="checkbox" id="themeToggle">
+        <label for="themeToggle" class="toggle">
+            <div class="ball"></div>
+        </label>
+    </div>
+ 
             <input type="text" id="display" disabled/>
             <div class="buttons">
                 <button onclick="power(2)">x²</button>
@@ -66,7 +70,7 @@
             </div>
 
     </div>
-  
+</div>
     
     <script src="script.js"></script>
 </body>
