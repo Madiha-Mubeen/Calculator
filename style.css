@@ -1,5 +1,5 @@
 body {
-    background-color:aqua;
+    background-color:rgb(163, 219, 219);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,4 +121,33 @@ body.dark #themeToggle {
     background-color: #444;
     color: #fff;
     box-shadow: 5px 5px 8px #161616, -5px -5px 8px #3a3a3a;
+}
+
+.calculator-container {
+    padding: 20px;
+    border-radius: 20px;
+    background: #e0e5ec;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px -12px #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .calculator-container {
+    background: #2e2e2e;
+    box-shadow: 6px 6px 12px #1a1a1a, -6px -6px 12px #3a3a3a;
+}
+
+.mode-toggle {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e0e5ec;
+    box-shadow: inset 6px 
 }
