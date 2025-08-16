@@ -23,6 +23,15 @@
     </div>
  
             <input type="text" id="display" disabled/>
+
+            <div class="memory">
+                <button onclick="memoryClear()">MC</button>
+                <button onclick="memoryRecall()">MR</button>
+                <button onclick="memoryStore()">MS</button>
+                <button onclick="memoryAdd()">M+</button>
+                <button onclick="memorySubtract()">M-</button>
+            </div>
+
             <div class="buttons">
                 <button onclick="power(2)">x²</button>
                 <button onclick="inverse()">1/x</button>
@@ -36,6 +45,11 @@
                  
                 <button onclick="appendValue('(')">(</button>
                 <button onclick="appendValue(')')">)</button>
+
+                <button onclick="sin()">sin</button>
+                <button onclick="cos()">cos</button>
+                <button onclick="tan()">tan</button>
+                <button onclick()>sec</button>
 
                 <button onclick="appendValue('7')">7</button>
                 <button onclick="appendValue('8')">8</button>
