@@ -51,7 +51,7 @@ body {
 }
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 12px;
     justify-content: center;
     margin-top: 10px;
@@ -149,7 +149,7 @@ body.dark #themeToggle {
 }
 
 body.dark .calculator-container {
-    background: #2e2e2e;
+    background: #5c5b5b;
     box-shadow: 6px 6px 12px #1a1a1a, -6px -6px 12px #3a3a3a;
 }
 
