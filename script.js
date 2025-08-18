@@ -1,4 +1,6 @@
 let display = document.getElementById("display");
+let lastAnswer = 0;
+let memory = 0;
 
 function appendValue(value) {
     if (display.value === "Error") display.value = "";
@@ -135,6 +137,10 @@ function power(n) {
     display.value = Math.pow(parseFloat(display.value), n);
 }
 
+function cubeRoot() {
+    display.value = Math.cbrt(parseFloat(display.value));
+}
+
 function factorial() {
     const num = parseInt(display.value);
     if (num < 0) {
@@ -162,6 +168,97 @@ function modulo() {
 function percent() {
     display.value = parseFloat(display.value) / 100;
 }
+
+function getAngleMode() {
+    const mode = document.querySelector('input[name="angleMode"]:checked').value;
+    return mode;
+}
+function toRadians(val) {
+    return getAngleMode() === "deg" ? val * Math.PI / 100 : val;
+}
+function toDegrees(val) {
+    return getAngleMode() === "deg" ? val * 180 / Math.PI : val; 
+}
+
+function sin() {
+    display.value = Math.sin(toRadians(parseFloat(display.value)));
+}
+function cos() {
+    display.value = Math.cos(toRadians(parseFloat(display.value)));
+}
+function tan() {
+    display.value = Math.tan(toRadians(parseFloat(display.value)));
+}
+function asin() {
+    display.value = toDegrees(Math.asin(parseFloat(display.value)));
+}
+function acos() {
+    display.value = toDegrees(Math.acos(parseFloat(display.value)));
+}
+function atan() {
+    display.value = toDegrees(Math.atan(parseFloat(display.value)));
+}
+function sinh() {
+    display.value = Math.sinh(parseFloat(display.value));
+}
+function cosh() {
+    display.value = Math.sinh(parseFloat(display.value));
+}
+function tanh() {
+    display.value = Math.tanh(parseFloat(display.value));
+}
+
+function insertPi() {
+    display.value += Math.PI;
+}
+function insertE() {
+    display.value += Math.E;
+}
+
+function powerY() {
+    const base = parseFloat(display.value);
+    const exponent = propmt("Enter exponent: ");
+    if (!isNaN(exponent)) display.value = Math.pow(base, parseFloat(exponent));
+}
+
+function randomNum() {
+    display.value = Math.random();
+}
+
+function ans() {
+    display.value += lastAnswer;
+}
+
+function memoryClear() {
+    memory = 0;
+}
+function memoryRecall() {
+    display.value += memory;
+}
+function memoryStore() {
+    memory = parseFloat(display.value);
+}
+function memoryAdd() {
+    memory += parseFloat(display.value);
+}
+function memorySubtract() {
+    memory -= parseFloat(display.value);
+}
+
+//Convert Deg to Radian vice versa 
+const angleRadios = document.querySelectorAll('input[name="angleMode"]');
+angleRadios.forEach(radio => {
+    radio.addEventListener("change", () => {
+        if (!display.value || isNaN(display.value)) return;
+
+        let val = parseFloat(display.value);
+        if(radio.value === "deg") {
+            display.value = (val * 180 / Math.PI).toFixed(6);
+        } else if (radio.value === "rad")  {
+            display.value = (val * Math.PI / 180).toFixed(6);
+        }
+    });
+});
 
 const themeToggle = document.getElementById("themeToggle");
 themeToggle.addEventListener("click", () => {
