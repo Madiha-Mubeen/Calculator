@@ -246,16 +246,23 @@ function memorySubtract() {
 }
 
 //Convert Deg to Radian vice versa 
+const angleIndicator = document.getElementById("angleIndicator");
 const angleRadios = document.querySelectorAll('input[name="angleMode"]');
+
 angleRadios.forEach(radio => {
     radio.addEventListener("change", () => {
-        if (!display.value || isNaN(display.value)) return;
+        if (!display.value || isNaN(display.value)) {
+            angleIndicator.textContent = radio.value.toUpperCase();
+            return;
+        }
 
         let val = parseFloat(display.value);
-        if(radio.value === "deg") {
+        if (radio.value === "deg") {
             display.value = (val * 180 / Math.PI).toFixed(6);
-        } else if (radio.value === "rad")  {
+            angleIndicator.textContent = "DEG";
+        } else if (radio.value === "rad") {
             display.value = (val * Math.PI / 180).toFixed(6);
+            angleIndicator.textContent = "RAD";
         }
     });
 });
